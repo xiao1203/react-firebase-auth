@@ -1,10 +1,16 @@
-# firebase の認証昨日サンプル
+# firebase の認証機能サンプル
 
 https://reffect.co.jp/react/react-firebase-auth
 
 これだと firebase のバージョンアップに対応できていないので
 https://zenn.dev/oversleep/articles/7016625b74936f
+
 https://zenn.dev/mktu/articles/3905b13500ffb6
+
+https://stackoverflow.com/questions/69155490/auth-createuserwithemailandpassword-is-not-a-function
+
+https://firebase.google.com/docs/auth/web/manage-users?hl=ja
+
 こちらを参考に微調整
 
 # Getting Started with Create React App

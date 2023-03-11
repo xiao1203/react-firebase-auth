@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { firebaseApp } from '../firebase';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from 'firebase/auth';
 
 const auth = getAuth(firebaseApp);
 
@@ -10,7 +14,16 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(email, password);
-    auth.createUserWithEmailAndPassword(email, password);
+    // auth.createUserWithEmailAndPassword(email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((cred) => {
+        console.log(cred);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   };
   const handleChangeEmail = (event) => {
     setEmail(event.currentTarget.value);
