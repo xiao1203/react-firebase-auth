@@ -1,3 +1,12 @@
+# firebase の認証昨日サンプル
+
+https://reffect.co.jp/react/react-firebase-auth
+
+これだと firebase のバージョンアップに対応できていないので
+https://zenn.dev/oversleep/articles/7016625b74936f
+https://zenn.dev/mktu/articles/3905b13500ffb6
+こちらを参考に微調整
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
