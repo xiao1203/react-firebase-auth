@@ -11,6 +11,7 @@ const auth = getAuth(firebaseApp);
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(email, password);

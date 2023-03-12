@@ -11,7 +11,15 @@ https://stackoverflow.com/questions/69155490/auth-createuserwithemailandpassword
 
 https://firebase.google.com/docs/auth/web/manage-users?hl=ja
 
+https://qiita.com/ryusei-nsgm/items/fae54b8c53ce845eb81d
+
 こちらを参考に微調整
+
+# 他、微調整
+
+react-router-dom の設定方法が古いので最新はこちらを参考に
+
+https://ralacode.com/blog/post/how-to-use-react-router/
 
 # Getting Started with Create React App
 
