@@ -1,25 +1,6 @@
 # firebase の認証機能サンプル
 
-https://reffect.co.jp/react/react-firebase-auth
-
-これだと firebase のバージョンアップに対応できていないので
-https://zenn.dev/oversleep/articles/7016625b74936f
-
-https://zenn.dev/mktu/articles/3905b13500ffb6
-
-https://stackoverflow.com/questions/69155490/auth-createuserwithemailandpassword-is-not-a-function
-
-https://firebase.google.com/docs/auth/web/manage-users?hl=ja
-
-https://qiita.com/ryusei-nsgm/items/fae54b8c53ce845eb81d
-
-こちらを参考に微調整
-
-# 他、微調整
-
-react-router-dom の設定方法が古いので最新はこちらを参考に
-
-https://ralacode.com/blog/post/how-to-use-react-router/
+https://reffect.co.jp/react/react18-firebase9-auth#i-4
 
 # Getting Started with Create React App
 

@@ -1,64 +1,54 @@
-// import { auth } from '../firebase';
-import { firebaseApp } from '../firebase';
-import { useState, useEffect } from 'react';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
-
-const auth = getAuth(firebaseApp);
+import { useState } from 'react';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
-  const handleSubmit = (event) => {
+  const [error, setError] = useState('');
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(email, password);
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // useEffect(() => {
-      //   if (user) {
-      //     console.log('userの存在確認OK');
-      //     navigate('/login');
-      //     console.log('リダイレクトできてない？');
-      //   }
-      // }, []);
-      // ...
-    });
-  };
+    const { email, password } = event.target.elements;
 
-  const handleChangeEmail = (event) => {
-    setEmail(event.currentTarget.value);
-  };
-  const handleChangePassword = (event) => {
-    setPassword(event.currentTarget.value);
+    signInWithEmailAndPassword(auth, email.value, password.value)
+      .then(() => {
+        navigate('/');
+      })
+      .catch((error) => {
+        switch (error.code) {
+          case 'auth/invalid-email':
+            setError('正しいメールアドレスの形式で入力してください。');
+            break;
+          case 'auth/user-not-found':
+            setError('メールアドレスかパスワードに誤りがあります。');
+            break;
+          case 'auth/wrong-password':
+            setError('メールアドレスかパスワードに誤りがあります。');
+            break;
+          default:
+            setError('メールアドレスかパスワードに誤りがあります。');
+            break;
+        }
+      });
   };
 
   return (
     <div>
       <h1>ログイン</h1>
+
       <form onSubmit={handleSubmit}>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <div>
-          <label>メールアドレス</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="email"
-            onChange={(event) => handleChangeEmail(event)}
-          />
+          <label htmlFor="email">メールアドレス</label>
+          <input id="email" name="email" type="email" placeholder="email" />
         </div>
         <div>
-          <label>パスワード</label>
+          <label htmlFor="password">パスワード</label>
           <input
+            id="password"
             name="password"
             type="password"
             placeholder="password"
-            onChange={(event) => handleChangePassword(event)}
           />
         </div>
         <div>
