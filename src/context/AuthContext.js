@@ -9,23 +9,39 @@ export function useAuthContext() {
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState('');
+  const [loading, setLoading] = useState(true);
 
   const value = {
     user,
+    loading,
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log('onAuthStateChanged内でuserの確認');
-        console.log(user);
-        setUser(user);
-      } else {
-        // User is signed out
-        // ...
-      }
+    const unsubscribed = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+      // if (user) {
+      //   console.log('onAuthStateChanged内でuserの確認');
+      //   console.log(user);
+      //   setUser(user);
+      //   setLoading(false);
+      // } else {
+      //   // User is signed out
+      //   // ...
+      // }
     });
+    return () => {
+      unsubscribed();
+    };
   }, []);
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  if (loading) {
+    return <p>loading...</p>;
+  } else {
+    return (
+      <AuthContext.Provider value={value}>
+        {!loading && children}
+      </AuthContext.Provider>
+    );
+  }
 }

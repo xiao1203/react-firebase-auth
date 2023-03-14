@@ -1,18 +1,19 @@
 // import { auth } from '../firebase';
 import { firebaseApp } from '../firebase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   getAuth,
   signInWithEmailAndPassword,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const auth = getAuth(firebaseApp);
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,6 +21,13 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      // useEffect(() => {
+      //   if (user) {
+      //     console.log('userの存在確認OK');
+      //     navigate('/login');
+      //     console.log('リダイレクトできてない？');
+      //   }
+      // }, []);
       // ...
     });
   };
